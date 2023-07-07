@@ -28,10 +28,25 @@ export class BarChartComponent {
             data: ['542', '582', '536', '427', '517',
 									 '475', '538', '561'],
           }  
-        ]
+        ],
+
       },
       options: {
-        aspectRatio:1.5
+        aspectRatio:1.5,
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'Pressure (atm)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Date'
+            }
+          }
+        }    
       }
     });
   }

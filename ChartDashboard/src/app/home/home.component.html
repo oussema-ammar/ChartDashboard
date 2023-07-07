@@ -1,10 +1,10 @@
 <h1>Sensor Data Display </h1>
 <div class="dashboard">
-    <div class="chart-container">
+    <div class="chart-container" (click)="openChart()">
         <app-line-chart></app-line-chart>
         <h4>Temperature</h4>
     </div>  
-    <div class="chart-container">
+    <div class="chart-container" (click)="openChart()">
         <app-bar-chart></app-bar-chart>
         <h4>Pressure</h4>
     </div>  
