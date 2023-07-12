@@ -15,33 +15,21 @@ export class HomeComponent {
 
   constructor(private dataFilterService: DataFilterService, private chartDataProvider: ChartDataProviderService) { }
 
-  applyFilter(): void {
-    // here we can input the filter value manually for now
-    this.filterValue="07-11";
+  applyFilter(minValue: string){
+    this.filterValue=minValue;
     this.dataFilterService.setFilterValue(this.filterValue);
-    this.lineChartData = this.filterChartData(this.filterValue, this.lineChartData);
-    this.barChartData = this.filterChartData(this.filterValue, this.barChartData);
+    this.lineChartData = this.dataFilterService.filterChartData(this.filterValue, this.chartDataProvider.getLineChartData());
+    this.barChartData = this.dataFilterService.filterChartData(this.filterValue, this.chartDataProvider.getLineChartData());
     console.log("Data changed");
   }
 
   ngOnInit(): void {
      this.dataFilterService.filterValue$.subscribe(filterValue => {
-      this.lineChartData = this.filterChartData(filterValue, this.lineChartData);
-      this.barChartData = this.filterChartData(filterValue, this.barChartData);
+      this.lineChartData = this.dataFilterService.filterChartData(filterValue, this.lineChartData);
+      this.barChartData = this.dataFilterService.filterChartData(filterValue, this.barChartData);
     });
   } 
 
-  filterChartData(filterValue: string, chartData: any): any {
-    const filterIndex = chartData.labels.indexOf(filterValue);
-    const filteredChartData = {
-      labels: chartData.labels.slice(filterIndex + 1),
-      datasets: chartData.datasets.map((dataset: { label: string; data: string[] }) => ({
-        ...dataset,
-        data: dataset.data.slice(filterIndex + 1)
-      }))
-    };
-    return filteredChartData;
-  }
 
   openChart(): void {
     console.log('Div clicked! Open details');

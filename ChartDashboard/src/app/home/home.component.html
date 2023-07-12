@@ -1,7 +1,12 @@
 <h1>Sensor Data Display </h1>
+<h3>Minimum Date Filter: </h3>
 <div class="center">
-    <button (click)="applyFilter()">Apply Filter</button>
-</div>
+    <input id="filter-value-min" class="InputField" #minValue />
+    <button type="button" class="InputField"(click)="applyFilter(minValue.value)">
+      Apply Filter
+    </button>
+  </div>
+
 <div class="dashboard">
     <div class="chart-container" (click)="openChart()">
         <app-line-chart [chartData]="lineChartData"></app-line-chart>
