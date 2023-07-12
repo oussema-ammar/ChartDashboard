@@ -5,24 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NgChartsModule } from 'ng2-charts';
-import { LineChartComponent } from './line-chart/line-chart.component';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { AboutComponent } from './about/about.component';
+import { ChartsModule } from './charts/charts.module';
+import { ChartDataProviderService } from './charts/chart-data-provider.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LineChartComponent,
-    BarChartComponent,
-    AboutComponent
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgChartsModule
+    NgChartsModule,
+    ChartsModule
   ],
-  providers: [],
+  providers: [ChartDataProviderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
